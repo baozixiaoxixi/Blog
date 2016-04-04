@@ -43,6 +43,6 @@ public class PostController {
     public String showPostById(@PathVariable("id") Integer id, Model model){
         Post post = postService.selectPostById(id);
         model.addAttribute("post", post);
-        return "singlePost";
+        return "singlePost" ;
     }
 }
