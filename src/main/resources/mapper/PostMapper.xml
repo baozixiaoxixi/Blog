@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mybatis中，映射文件中的namespace是用于绑定Dao接口的，即面向接口编程。
+	当你的namespace绑定接口后，你可以不用写接口实现类，mybatis会通过该绑定自动
+	帮你找到对应要执行的SQL语句 -->
+<mapper namespace="org.crazyzhang.blog.mapper.PostMapper">
+	
+	<!-- id和命名空间用来定位SQL语句，parameterType表示参数的类型，resultMap返回类型 -->
+	<select id="selectPostById" parameterType="Integer" resultType="post">
+		select * from post where id=#{id}
+	</select>
+
+
+</mapper>
