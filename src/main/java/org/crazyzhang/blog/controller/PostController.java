@@ -21,6 +21,11 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    /**
+     * 返回所有文章
+     * @param model
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String indexPage(Model model){
         List<Post> posts = postService.selectAllPost();
@@ -28,10 +33,16 @@ public class PostController {
         return "post";
     }
 
+    /**
+     * 根据文章id返回对应文章
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping("/{id}")
     public String showPostById(@PathVariable("id") Integer id, Model model){
         Post post = postService.selectPostById(id);
         model.addAttribute("post", post);
-        return "test" ;
+        return "singlePost";
     }
 }
