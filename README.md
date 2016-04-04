@@ -1,2 +1,2 @@
 # Blog
-This is a persona lBlog
+This is a persona Blog
