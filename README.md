@@ -1,2 +1,4 @@
 # Blog
-This is a persona Blog
+This is a personal Blog
+
+Using springMVC,spring and Mybatis
