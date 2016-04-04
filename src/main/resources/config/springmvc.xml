@@ -20,7 +20,10 @@
 	实际开发时使用mvc:annotation-driven
 	 -->
 	 <mvc:annotation-driven></mvc:annotation-driven> 
-	
+
+	<!-- 处理静态资源 -->
+	<mvc:resources mapping="/img/**" location="/img/"/>
+	<mvc:resources mapping="/css/**" location="/css/"/>
 
 	<!-- 视图解析器
 	解析jsp解析，默认使用jstl标签，classpath下的得有jstl的包

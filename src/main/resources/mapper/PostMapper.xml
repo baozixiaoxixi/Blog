@@ -11,5 +11,9 @@
 		select * from post where id=#{id}
 	</select>
 
+	<select id="findAllPost" resultType="post">
+		select * from post
+	</select>
+
 
 </mapper>
