@@ -27,9 +27,19 @@ public class PostController {
      * @param model
      * @return
      */
+//    @RequestMapping(method = RequestMethod.GET)
+//    public String indexPage(Model model){
+//        List<Post> posts = postService.selectAllPost();
+//        model.addAttribute("posts",posts);
+//        return "post";
+//    }
+
+    /**
+     * 返回所有文章（内容为摘要）,传入数字为摘要的长度
+     */
     @RequestMapping(method = RequestMethod.GET)
-    public String indexPage(Model model){
-        List<Post> posts = postService.selectAllPost();
+    public String indexPageSum(Model model){
+        List<Post> posts = postService.findPostWithLimit(200);
         model.addAttribute("posts",posts);
         return "post";
     }

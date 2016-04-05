@@ -29,4 +29,9 @@ public class PostServiceImpl implements PostService {
     public void insertPost(Post post) {
         postMapper.insertPost(post);
     }
+
+    @Override
+    public List<Post> findPostWithLimit(Integer length) {
+        return postMapper.findPostWithLimit(length);
+    }
 }

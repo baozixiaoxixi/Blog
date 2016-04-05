@@ -18,4 +18,7 @@ public interface PostMapper {
 
     //添加一篇文章
     public void insertPost(Post post);
+
+    //显示有摘要的文章
+    public List<Post> findPostWithLimit(Integer length);
 }

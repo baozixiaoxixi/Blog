@@ -15,6 +15,10 @@
 		select * from post
 	</select>
 
+	<select id="findPostWithLimit" parameterType="Integer" resultType="post">
+		select id,title,SUBSTRING(content,1,#{length}) AS content,created from post
+	</select>
+
 	<insert id="insertPost" parameterType="post">
 		INSERT INTO post(title,content,created) VALUES (#{title},#{content},#{created})
 	</insert>
