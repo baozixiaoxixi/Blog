@@ -47,6 +47,8 @@
                     </div>
                 </div>
                 <p>Ornare sapien rhoncus, nec mi hendrerit. Ante aliquam dui arcu, diam sodales erat felis dolor sed in, nec placerat non.</p>
+            </div>
+            <div>
                 <form action="${pageContext.request.contextPath}/post/create">
                     <button type="submit" class="btn pull-right btn-primary">添加博客</button>
                 </form>

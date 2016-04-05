@@ -43,6 +43,12 @@ public class PostController {
     @RequestMapping("/{id}")
     public String showPostById(@PathVariable("id") Integer id, Model model){
         Post post = postService.selectPostById(id);
+        System.out.print(post);
+        if(post == null){
+            post = new Post();
+            post.setTitle("没有文章了");
+            post.setId(id);
+        }
         model.addAttribute("post", post);
         return "singlePost" ;
     }
@@ -54,7 +60,6 @@ public class PostController {
 
     @RequestMapping(value = "/createPost",method = RequestMethod.POST)
     public String createPost(Post post){
-        System.out.print(post);
         post.setCreated(new Date());
         postService.insertPost(post);
         return "redirect:/post";

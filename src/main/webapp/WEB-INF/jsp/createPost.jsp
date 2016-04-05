@@ -12,6 +12,14 @@
   <link rel="stylesheet" href="/css/highlight.css"/>
   <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
   <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/js/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/js/ueditor/ueditor.all.min.js"> </script>
+  <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+  <script>
+    //配置ueditor的根路径
+    var UEDITOR_HOME_URL = "${pageContext.request.contextPath}/js/ueditor/";
+    var ue = UE.getEditor('editor');
+  </script>
 </head>
 <body>
 
@@ -35,10 +43,10 @@
 
         </div>
         <div class="form-group">
-          <label for="content">内容</label>
-          <textarea class="form-control" id="content" name="content"
-                    placeholder="文章的内容" rows="18"></textarea>
-
+          <label for="editor">内容</label>
+          <!--<textarea class="form-control" id="content" name="content"
+                    placeholder="文章的内容" rows="18"></textarea>-->
+          <textarea id="editor" name="content" cssStyle="width:90%;height:160px;" rows="18"></textarea>
         </div>
         <button type="submit" class="btn pull-right btn-primary">保存</button>
       </form>

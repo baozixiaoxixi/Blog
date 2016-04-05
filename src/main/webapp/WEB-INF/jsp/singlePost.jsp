@@ -29,8 +29,13 @@
 
       <nav>
         <ul class="pager">
-          <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> 上一篇</a></li>
-          <li class="next"><a href="#">下一篇 <span aria-hidden="true">&rarr;</span></a></li>
+          <c:if test="${post.id>1}">
+              <li class="previous"><a href="${pageContext.request.contextPath}/post/${post.id-1}"><span aria-hidden="true">&larr;</span> 上一篇</a></li>
+          </c:if>
+          <c:if test="${!(post.title eq '没有文章了')}">
+            <li class="next"><a href="${pageContext.request.contextPath}/post/${post.id+1}">下一篇 <span aria-hidden="true">&rarr;</span></a></li>
+          </c:if>
+
         </ul>
       </nav>
      
