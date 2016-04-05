@@ -19,4 +19,9 @@ public interface PostService {
      */
 
     public List<Post> selectAllPost();
+
+    /**
+     * 添加一篇文章
+     */
+     public void insertPost(Post post);
 }

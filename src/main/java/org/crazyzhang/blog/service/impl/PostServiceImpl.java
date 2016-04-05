@@ -24,4 +24,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> selectAllPost() {
         return postMapper.findAllPost();
     }
+
+    @Override
+    public void insertPost(Post post) {
+        postMapper.insertPost(post);
+    }
 }

@@ -15,4 +15,7 @@ public interface PostMapper {
     public Post selectPostById(Integer id);
 
     public List<Post> findAllPost();
+
+    //添加一篇文章
+    public void insertPost(Post post);
 }

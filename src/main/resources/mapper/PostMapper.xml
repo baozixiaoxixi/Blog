@@ -15,5 +15,8 @@
 		select * from post
 	</select>
 
+	<insert id="insertPost" parameterType="post">
+		INSERT INTO post(title,content,created) VALUES (#{title},#{content},#{created})
+	</insert>
 
 </mapper>

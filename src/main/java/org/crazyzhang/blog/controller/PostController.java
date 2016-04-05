@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,5 +45,18 @@ public class PostController {
         Post post = postService.selectPostById(id);
         model.addAttribute("post", post);
         return "singlePost" ;
+    }
+
+    @RequestMapping("/create")
+    public String showCreatePage(){
+        return "createPost";
+    }
+
+    @RequestMapping(value = "/createPost",method = RequestMethod.POST)
+    public String createPost(Post post){
+        System.out.print(post);
+        post.setCreated(new Date());
+        postService.insertPost(post);
+        return "redirect:/post";
     }
 }
