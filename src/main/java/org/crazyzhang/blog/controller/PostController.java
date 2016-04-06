@@ -1,5 +1,7 @@
 package org.crazyzhang.blog.controller;
 
+import javafx.geometry.Pos;
+import org.crazyzhang.blog.pojo.CustomDate;
 import org.crazyzhang.blog.pojo.Post;
 import org.crazyzhang.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -55,14 +55,14 @@ public class PostController {
     @RequestMapping("/{id}")
     public String showPostById(@PathVariable("id") Integer id, Model model){
         Post post = postService.selectPostById(id);
-        System.out.print(post);
+        //System.out.print(post);
         if(post == null){
-            post = new Post();
-            post.setTitle("没有文章了");
-            post.setId(id);
+            return "redirect:/post" ;
+        }else{
+            model.addAttribute("post", post);
+            return "singlePost" ;
         }
-        model.addAttribute("post", post);
-        return "singlePost" ;
+
     }
 
     @RequestMapping("/create")
@@ -77,17 +77,37 @@ public class PostController {
         return "redirect:/post";
     }
 
-    /**
-     * 根据文章创建日期进行分组
-     * @return
-     */
     @ResponseBody
     @RequestMapping(value = "/orderByDate",method = RequestMethod.GET)
-    public List<String> orderByDate(){
-        List<String> lists = postService.orderByDate();
-        System.out.print(lists);
-        return lists;
+    public List<CustomDate> orderByDate(){
+        List<CustomDate> times = postService.orderByDate();
+        //System.out.print(times);
+        return times;
     }
 
+    @RequestMapping("/time/{time}")
+    public String showPostById(@PathVariable("time") String time, Model model){
 
+        return "post" ;
+    }
+
+    /**
+     * 下一篇文章id,传入当前文章的id
+     */
+    @ResponseBody
+    @RequestMapping("/nextPage/{id}")
+    public Integer  showNextPage(@PathVariable("id") Integer id,Model model){
+        Integer nextId = postService.findNextPage(id);
+        //System.out.print(nextId);
+        return nextId ;
+    }
+    /**
+     * 上一篇文章id,传入当前文章的id
+     */
+    @ResponseBody
+    @RequestMapping("/previousPage/{id}")
+    public Integer  showPreviousPage(@PathVariable("id") Integer id,Model model){
+        Integer previousId = postService.findPreviousPage(id);
+        return previousId ;
+    }
 }

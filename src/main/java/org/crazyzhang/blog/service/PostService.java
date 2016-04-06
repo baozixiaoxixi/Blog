@@ -1,5 +1,6 @@
 package org.crazyzhang.blog.service;
 
+import org.crazyzhang.blog.pojo.CustomDate;
 import org.crazyzhang.blog.pojo.Post;
 
 import java.sql.Timestamp;
@@ -36,5 +37,15 @@ public interface PostService {
     /**
      * 根据日期显示分类
      */
-    public List<String> orderByDate();
+    public List<CustomDate> orderByDate();
+
+    /**
+     * 下一篇文章id
+     */
+    public Integer findNextPage(Integer id);
+
+    /**
+     * 上一篇文章id
+     */
+    public Integer findPreviousPage(Integer id);
 }

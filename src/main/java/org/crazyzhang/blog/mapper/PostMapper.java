@@ -1,10 +1,10 @@
 package org.crazyzhang.blog.mapper;
 
+import org.crazyzhang.blog.pojo.CustomDate;
 import org.crazyzhang.blog.pojo.Post;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Timestamp;
-import java.util.Date;
+
 import java.util.List;
 
 /**
@@ -25,5 +25,12 @@ public interface PostMapper {
     public List<Post> findPostWithLimit(Integer length);
 
     //根据日期显示分类
-    public List<String> orderByDate();
+    public List<CustomDate> orderByDate();
+
+    //下一篇文章
+    public Integer findNextPage(Integer id);
+
+    //上一篇文章
+    public Integer findPreviousPage(Integer id);
+
 }

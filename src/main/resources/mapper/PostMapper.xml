@@ -23,8 +23,16 @@
 		INSERT INTO post(title,content,created) VALUES (#{title},#{content},#{created})
 	</insert>
 
-	<select id="orderByDate" resultType="java.lang.String">
-		SELECT DATE_FORMAT(created,'%Y-%m') AS created FROM post GROUP BY DATE_FORMAT(created,'%Y-%m') ORDER BY created DESC
+	<select id="orderByDate" resultType="customDate">
+		SELECT DATE_FORMAT(created,'%Y') AS YEAR,DATE_FORMAT(created,'%m') AS MONTH FROM post GROUP BY DATE_FORMAT(created,'%Y-%m') ORDER BY created DESC
+	</select>
+
+	<select id="findNextPage" parameterType="Integer"  resultType="java.lang.Integer">
+		SELECT id FROM post WHERE id = (SELECT MAX(id) FROM post WHERE id &lt;  #{id} );
+	</select>
+
+	<select id="findPreviousPage" parameterType="Integer"  resultType="java.lang.Integer">
+		SELECT id FROM post WHERE id = (SELECT MIN(id) FROM post WHERE id &gt;  #{id} );
 	</select>
 
 </mapper>

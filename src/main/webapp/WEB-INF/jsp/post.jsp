@@ -11,6 +11,26 @@
     <link rel="stylesheet" href="/css/blog.css"/>
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $.ajax({
+            url:"${pageContext.request.contextPath}/post/orderByDate",
+            type:"get",
+            success: function(msg){
+                var ol = $("#ol");
+                eval("var json = " + msg);// 转换为json对象
+
+                for(var i=0;i<json.length;i++){
+                    ol.append("<li><a href=\"#\">"+json[i].year+"-"+json[i].month+"</a></li>");
+                }
+
+               // ol.append(data[0].year);
+
+            },
+            error: function(){
+                alert("更新信息状态失败！");
+            }
+        });
+    </script>
 </head>
 <body>
 
@@ -57,16 +77,8 @@
             </div>
             <div class="sidebar-module">
                 <h4>归档</h4>
-                <ol class="list-unstyled">
-                    <li><a href="#">2015年03月</a></li>
-                    <li><a href="#">2015年02月</a></li>
-                    <li><a href="#">2015年01月</a></li>
-                    <li><a href="#">2014年12月</a></li>
-                    <li><a href="#">2014年11月</a></li>
-                    <li><a href="#">2014年10月</a></li>
-                    <li><a href="#">2014年09月</a></li>
-                    <li><a href="#">2014年08月</a></li>
-                    <li><a href="#">2014年07月</a></li>
+                <ol class="list-unstyled" id="ol">
+
                 </ol>
             </div>
         </div>

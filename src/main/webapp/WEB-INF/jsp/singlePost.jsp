@@ -12,6 +12,21 @@
   <link rel="stylesheet" href="/css/highlight.css"/>
   <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
   <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $.getJSON("${pageContext.request.contextPath}/post/nextPage/${post.id}", function(json){
+      if(json!=null){
+        var next = $("#next");
+        next.append("<a href=\"${pageContext.request.contextPath}/post/"+json+"\">下一篇 <span aria-hidden=\"true\">&rarr;</span></a>");
+      }
+    });
+
+    $.getJSON("${pageContext.request.contextPath}/post/previousPage/${post.id}", function(json){
+      if(json!=null){
+        var next = $("#previous");
+        next.append("<a href=\"${pageContext.request.contextPath}/post/"+json+"\"><span aria-hidden=\"true\">&larr;</span> 上一篇</a>");
+      }
+    });
+  </script>
 </head>
 <body>
 <div class="container">
@@ -29,12 +44,8 @@
 
       <nav>
         <ul class="pager">
-          <c:if test="${post.id>1}">
-              <li class="previous"><a href="${pageContext.request.contextPath}/post/${post.id-1}"><span aria-hidden="true">&larr;</span> 上一篇</a></li>
-          </c:if>
-          <c:if test="${!(post.title eq '没有文章了')}">
-            <li class="next"><a href="${pageContext.request.contextPath}/post/${post.id+1}">下一篇 <span aria-hidden="true">&rarr;</span></a></li>
-          </c:if>
+            <li class="previous" id="previous"></li>
+            <li class="next" id="next"></li>
 
         </ul>
       </nav>
@@ -73,6 +84,13 @@
           </div>
         </div>
         <p>Ornare sapien rhoncus, nec mi hendrerit. Ante aliquam dui arcu, diam sodales erat felis dolor sed in, nec placerat non.</p>
+      </div>
+      <div class="sidebar-module">
+        <div class="avatar">
+          <form action="${pageContext.request.contextPath}/post">
+            <button type="submit" class="btn pull-right btn-primary">返回博客列表</button>
+          </form>
+        </div>
       </div>
       <div class="sidebar-module">
         <h4>归档</h4>

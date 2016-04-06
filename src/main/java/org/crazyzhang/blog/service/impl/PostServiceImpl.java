@@ -1,13 +1,11 @@
 package org.crazyzhang.blog.service.impl;
 
 import org.crazyzhang.blog.mapper.PostMapper;
+import org.crazyzhang.blog.pojo.CustomDate;
 import org.crazyzhang.blog.pojo.Post;
 import org.crazyzhang.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 /**
  * Created by 包子 on 2016/4/4.
@@ -39,7 +37,17 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<String> orderByDate() {
+    public List<CustomDate> orderByDate() {
         return postMapper.orderByDate();
+    }
+
+    @Override
+    public Integer findNextPage(Integer id) {
+        return postMapper.findNextPage(id);
+    }
+
+    @Override
+    public Integer findPreviousPage(Integer id) {
+        return postMapper.findPreviousPage(id);
     }
 }
