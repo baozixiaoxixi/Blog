@@ -16,11 +16,15 @@
 	</select>
 
 	<select id="findPostWithLimit" parameterType="Integer" resultType="post">
-		select id,title,SUBSTRING(content,1,#{length}) AS content,created from post
+		select id,title,SUBSTRING(content,1,#{length}) AS content,created from post ORDER BY created DESC
 	</select>
 
 	<insert id="insertPost" parameterType="post">
 		INSERT INTO post(title,content,created) VALUES (#{title},#{content},#{created})
 	</insert>
+
+	<select id="orderByDate" resultType="java.lang.String">
+		SELECT DATE_FORMAT(created,'%Y-%m') AS created FROM post GROUP BY DATE_FORMAT(created,'%Y-%m') ORDER BY created DESC
+	</select>
 
 </mapper>

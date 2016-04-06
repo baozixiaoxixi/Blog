@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -74,4 +76,18 @@ public class PostController {
         postService.insertPost(post);
         return "redirect:/post";
     }
+
+    /**
+     * 根据文章创建日期进行分组
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/orderByDate",method = RequestMethod.GET)
+    public List<String> orderByDate(){
+        List<String> lists = postService.orderByDate();
+        System.out.print(lists);
+        return lists;
+    }
+
+
 }

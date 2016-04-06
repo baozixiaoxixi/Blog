@@ -19,7 +19,25 @@
 	比如json转换解析器就默认加载了，如果使用mvc:annotation-driven不用配置上边的RequestMappingHandlerMapping和RequestMappingHandlerAdapter
 	实际开发时使用mvc:annotation-driven
 	 -->
-	 <mvc:annotation-driven></mvc:annotation-driven> 
+	 <mvc:annotation-driven>
+		 <mvc:message-converters register-defaults="true">
+			 <!-- 配置Fastjson支持 -->
+			 <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				 <property name="supportedMediaTypes">
+					 <list>
+						 <value>text/html;charset=UTF-8</value>
+						 <value>application/json</value>
+					 </list>
+				 </property>
+				 <property name="features">
+					 <list>
+						 <value>WriteMapNullValue</value>
+						 <value>QuoteFieldNames</value>
+					 </list>
+				 </property>
+			 </bean>
+		 </mvc:message-converters>
+	 </mvc:annotation-driven>
 
 	<!-- 处理静态资源 -->
 	<mvc:resources mapping="/img/**" location="/img/"/>
