@@ -60,6 +60,8 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/post/create"/>
+			<mvc:mapping path="/post/edit/*"/>
+			<mvc:mapping path="/post/updatePost"/>
 			<bean class="org.crazyzhang.blog.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

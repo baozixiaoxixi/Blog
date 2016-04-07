@@ -129,6 +129,9 @@ public class PostController {
      */
     @RequestMapping("/updatePost")
     public String  updatePost(Post post){
+        if(post == null){
+            return "redirect:/post";
+        }
         post.setCreated(new Date());
         postService.updatePost(post);
         return "redirect:/post/"+ post.getId();
