@@ -90,6 +90,9 @@
           <form action="${pageContext.request.contextPath}/post">
             <button type="submit" class="btn pull-right btn-primary">返回博客列表</button>
           </form>
+          <form action="${pageContext.request.contextPath}/post/edit/${post.id}">
+            <button type="submit" class="btn pull-right btn-primary">编译本文</button>
+          </form>
         </div>
       </div>
       <div class="sidebar-module">

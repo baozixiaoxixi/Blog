@@ -50,4 +50,9 @@ public class PostServiceImpl implements PostService {
     public Integer findPreviousPage(Integer id) {
         return postMapper.findPreviousPage(id);
     }
+
+    @Override
+    public void updatePost(Post post) {
+        postMapper.updatePost(post);
+    }
 }

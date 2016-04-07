@@ -35,4 +35,8 @@
 		SELECT id FROM post WHERE id = (SELECT MIN(id) FROM post WHERE id &gt;  #{id} );
 	</select>
 
+	<update id="updatePost" parameterType="post">
+		UPDATE post SET title=#{title},content=#{content},created=#{created} WHERE id=#{id}
+	</update>
+
 </mapper>

@@ -110,4 +110,27 @@ public class PostController {
         Integer previousId = postService.findPreviousPage(id);
         return previousId ;
     }
+
+    /**
+     * 返回编译文章的页面
+     */
+    @RequestMapping("/edit/{id}")
+    public String editUI(@PathVariable("id") Integer id, Model model){
+        Post post = postService.selectPostById(id);
+        if(post == null){
+            return "redirect:/post" ;
+        }else{
+            model.addAttribute("post", post);
+            return "editPost" ;
+        }
+    }
+    /**
+     * 保存编译的文章
+     */
+    @RequestMapping("/updatePost")
+    public String  updatePost(Post post){
+        post.setCreated(new Date());
+        postService.updatePost(post);
+        return "redirect:/post/"+ post.getId();
+    }
 }

@@ -33,4 +33,6 @@ public interface PostMapper {
     //上一篇文章
     public Integer findPreviousPage(Integer id);
 
+    //更新文章
+    public void updatePost(Post post);
 }

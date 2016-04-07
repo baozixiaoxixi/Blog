@@ -48,4 +48,9 @@ public interface PostService {
      * 上一篇文章id
      */
     public Integer findPreviousPage(Integer id);
+
+    /**
+     * 更新文章
+     */
+    public void updatePost (Post post);
 }
