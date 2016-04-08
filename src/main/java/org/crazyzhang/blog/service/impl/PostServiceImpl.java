@@ -1,5 +1,6 @@
 package org.crazyzhang.blog.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import org.crazyzhang.blog.mapper.PostMapper;
 import org.crazyzhang.blog.pojo.CustomDate;
 import org.crazyzhang.blog.pojo.Post;
@@ -54,5 +55,13 @@ public class PostServiceImpl implements PostService {
     @Override
     public void updatePost(Post post) {
         postMapper.updatePost(post);
+    }
+
+    @Override
+    public List<Post> findPostWithLimit(Integer length, Integer id) {
+        //获取第1页，5条内容，默认查询总数count
+        PageHelper.startPage(id, 5);
+        List<Post> posts = postMapper.findPostWithLimit(200); //紧跟着的第一个select方法会被分页
+        return posts;
     }
 }

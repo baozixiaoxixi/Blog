@@ -1,5 +1,6 @@
 package org.crazyzhang.blog.controller;
 
+import com.github.pagehelper.PageInfo;
 import javafx.geometry.Pos;
 import org.crazyzhang.blog.pojo.CustomDate;
 import org.crazyzhang.blog.pojo.Post;
@@ -36,15 +37,15 @@ public class PostController {
 //        return "post";
 //    }
 
-    /**
-     * 返回所有文章（内容为摘要）,传入数字为摘要的长度
-     */
-    @RequestMapping(method = RequestMethod.GET)
-    public String indexPageSum(Model model){
-        List<Post> posts = postService.findPostWithLimit(200);
-        model.addAttribute("posts",posts);
-        return "post";
-    }
+//    /**
+//     * 返回所有文章（内容为摘要）,传入数字为摘要的长度
+//     */
+//    @RequestMapping(method = RequestMethod.GET)
+//    public String indexPageSum(Model model){
+//        List<Post> posts = postService.findPostWithLimit(200);
+//        model.addAttribute("posts",posts);
+//        return "post";
+//    }
 
     /**
      * 根据文章id返回对应文章
@@ -57,7 +58,7 @@ public class PostController {
         Post post = postService.selectPostById(id);
         //System.out.print(post);
         if(post == null){
-            return "redirect:/post" ;
+            return "redirect:/post/page/1" ;
         }else{
             model.addAttribute("post", post);
             return "singlePost" ;
@@ -74,7 +75,7 @@ public class PostController {
     public String createPost(Post post){
         post.setCreated(new Date());
         postService.insertPost(post);
-        return "redirect:/post";
+        return "redirect:/post/page/1";
     }
 
     @ResponseBody
@@ -85,11 +86,6 @@ public class PostController {
         return times;
     }
 
-    @RequestMapping("/time/{time}")
-    public String showPostById(@PathVariable("time") String time, Model model){
-
-        return "post" ;
-    }
 
     /**
      * 下一篇文章id,传入当前文章的id
@@ -118,7 +114,7 @@ public class PostController {
     public String editUI(@PathVariable("id") Integer id, Model model){
         Post post = postService.selectPostById(id);
         if(post == null){
-            return "redirect:/post" ;
+            return "redirect:/post/page/1" ;
         }else{
             model.addAttribute("post", post);
             return "editPost" ;
@@ -130,10 +126,25 @@ public class PostController {
     @RequestMapping("/updatePost")
     public String  updatePost(Post post){
         if(post == null){
-            return "redirect:/post";
+            return "redirect:/post/page/1";
         }
         post.setCreated(new Date());
         postService.updatePost(post);
         return "redirect:/post/"+ post.getId();
+    }
+
+    /**
+     * 分页显示文章列表
+     */
+    @RequestMapping("/page/{id}")
+    public String showPageSum(@PathVariable("id") Integer id,Model model){
+        List<Post> posts = postService.findPostWithLimit(200,id);
+        PageInfo page = new PageInfo(posts);
+        model.addAttribute("posts",posts);
+        model.addAttribute("currentPage",id);
+        model.addAttribute("totalPages",page.getPages());
+        model.addAttribute("isHasNextPage",page.isHasNextPage());
+        model.addAttribute("isHasPreviousPage",page.isHasPreviousPage());
+        return "post";
     }
 }

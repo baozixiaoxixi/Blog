@@ -87,7 +87,7 @@
       </div>
       <div class="sidebar-module">
         <div class="avatar">
-          <form action="${pageContext.request.contextPath}/post">
+          <form action="${pageContext.request.contextPath}/post/page/1">
             <button type="submit" class="btn pull-right btn-primary">返回博客列表</button>
           </form>
           <form action="${pageContext.request.contextPath}/post/edit/${post.id}">

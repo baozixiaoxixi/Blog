@@ -35,6 +35,10 @@ public interface PostService {
     public List<Post> findPostWithLimit(Integer length);
 
     /**
+     * 显示有摘要的所有文章，和当前页数
+     */
+    public List<Post> findPostWithLimit(Integer length,Integer id);
+    /**
      * 根据日期显示分类
      */
     public List<CustomDate> orderByDate();

@@ -54,6 +54,28 @@
                     <p class="blog-post-content">${post.content}</p>
                 </c:forEach>
             </div>
+            <nav>
+                <ul class="pagination">
+                    <c:if test="${isHasPreviousPage}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/post/page/${currentPage-1}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+
+                    <c:forEach var="i" begin="1" end="${totalPages}">
+                        <li><a href="${pageContext.request.contextPath}/post/page/${i}">${i}</a></li>
+                    </c:forEach>
+                    <c:if test="${isHasNextPage}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/post/page/${currentPage+1}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                </ul>
+            </nav>
         </div>
 
 

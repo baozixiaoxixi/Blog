@@ -3,6 +3,6 @@
 <html lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml">
 <body>
     <!-- 重定向  -->
-    <%response.sendRedirect(request.getContextPath() + "/post");%>
+    <%response.sendRedirect(request.getContextPath() + "/post/page/1");%>
 </body>
 </html>
