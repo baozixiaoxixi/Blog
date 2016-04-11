@@ -2,6 +2,7 @@ package org.crazyzhang.blog.mapper;
 
 import org.crazyzhang.blog.pojo.CustomDate;
 import org.crazyzhang.blog.pojo.Post;
+import org.crazyzhang.blog.pojo.TwoDate;
 import org.springframework.stereotype.Repository;
 
 
@@ -35,4 +36,7 @@ public interface PostMapper {
 
     //更新文章
     public void updatePost(Post post);
+
+    //根据日期分类文章
+    public List<Post> showPostByDate(TwoDate twoDate);
 }

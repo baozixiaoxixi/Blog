@@ -39,4 +39,8 @@
 		UPDATE post SET title=#{title},content=#{content},created=#{created} WHERE id=#{id}
 	</update>
 
+	<select id="showPostByDate" parameterType="twoDate" resultType="Post">
+		SELECT id,title,SUBSTRING(content,1,200) AS content,created FROM post WHERE created BETWEEN #{firstDate} AND #{nextDate} ORDER BY created DESC
+	</select>
+
 </mapper>

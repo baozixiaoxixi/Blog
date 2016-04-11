@@ -2,16 +2,19 @@ package org.crazyzhang.blog.service;
 
 import org.crazyzhang.blog.pojo.CustomDate;
 import org.crazyzhang.blog.pojo.Post;
+import org.crazyzhang.blog.pojo.TwoDate;
 
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+
 /**
  * Created by 包子 on 2016/4/4.
  */
 public interface PostService {
     /**
      * g根据Id查找文章
+     *
      * @param id
      * @return
      */
@@ -19,6 +22,7 @@ public interface PostService {
 
     /**
      * 查询所有文章列表
+     *
      * @return
      */
 
@@ -27,7 +31,7 @@ public interface PostService {
     /**
      * 添加一篇文章
      */
-     public void insertPost(Post post);
+    public void insertPost(Post post);
 
     /**
      * 显示有摘要的所有文章
@@ -37,7 +41,8 @@ public interface PostService {
     /**
      * 显示有摘要的所有文章，和当前页数
      */
-    public List<Post> findPostWithLimit(Integer length,Integer id);
+    public List<Post> findPostWithLimit(Integer length, Integer id);
+
     /**
      * 根据日期显示分类
      */
@@ -56,5 +61,11 @@ public interface PostService {
     /**
      * 更新文章
      */
-    public void updatePost (Post post);
+    public void updatePost(Post post);
+
+
+    /**
+     * 根据日期分类文章
+     */
+    public List<Post> showPostByDate(Integer id, TwoDate twoDate);
 }

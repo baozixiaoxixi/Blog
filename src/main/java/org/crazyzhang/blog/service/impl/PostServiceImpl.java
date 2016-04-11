@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import org.crazyzhang.blog.mapper.PostMapper;
 import org.crazyzhang.blog.pojo.CustomDate;
 import org.crazyzhang.blog.pojo.Post;
+import org.crazyzhang.blog.pojo.TwoDate;
 import org.crazyzhang.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,14 @@ public class PostServiceImpl implements PostService {
         //获取第1页，5条内容，默认查询总数count
         PageHelper.startPage(id, 5);
         List<Post> posts = postMapper.findPostWithLimit(200); //紧跟着的第一个select方法会被分页
+        return posts;
+    }
+
+    @Override
+    public List<Post> showPostByDate(Integer id,TwoDate twoDate) {
+        //获取第1页，5条内容，默认查询总数count
+        PageHelper.startPage(id, 5);
+        List<Post> posts = postMapper.showPostByDate(twoDate); //紧跟着的第一个select方法会被分页
         return posts;
     }
 }
